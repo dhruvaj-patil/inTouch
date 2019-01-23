@@ -1,0 +1,129 @@
+<div class="container">
+  <div class="row mb-4 align-items-center">
+    <div class="col">
+      <h1 class="text-center">Welcome to InTouch Assignement</h1>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 m-2">
+      <div class="card">
+        <div class="card-header">
+          <div class="d-flex justify-content-start">
+            <h4>Contact List</h4>
+          </div>
+
+          <div class="d-flex justify-content-end">
+            <input class="form-control" placeholder="Search by Name/Number" #query (keyup)="search(query.value)" type="text"
+              name="nameSearch">
+          </div>
+
+        </div>
+        <div class="card-body">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>First name</th>
+                <th>Phone no</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let contact of searchContacts | 
+                        paginate: { itemsPerPage: 10, currentPage: p };
+                        index as i"
+                (click)="getDetails(contact)">
+                <td>{{i+1}}</td>
+                <td>{{ contact['First Name'] }}</td>
+                <td>{{ contact['Home Phone'] }}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 m-2">
+      <div class="card">
+        <div class="row d-flex justify-content-center">
+          <img src="https://img.icons8.com/office/48/000000/circled-user-male-skin-type-1-2.png" class="card-img-top"
+            alt="...">
+
+        </div>
+        <hr class="hr-head">
+
+        <div class="card-body">
+
+          <div *ngIf="userDetails['Display Name']; else normal" class="m-2 ">
+            <h5 class="text-center"><strong>{{userDetails['Display Name'] }} Details:</strong></h5>
+          </div>
+
+          <ng-template #normal>
+            <h5 class="text-center"><strong>Details:</strong></h5>
+          </ng-template>
+
+          <hr>
+          <div class="row">
+            <div class="col-sm-12">
+              <ul>
+                <li *ngIf="userDetails['Anniversary'] !== ''">Anniversary = {{userDetails['Anniversary']}}</li>
+                <li *ngIf="userDetails['Birthday'] !== ''">Birthday = {{userDetails['Birthday']}}</li>
+                <li *ngIf="userDetails['Business Address']  !== ''">Business Address = {{userDetails['Business
+                  Address']}}</li>
+                <li *ngIf="userDetails['Business Address 2']  !== ''">Business Address 2 = {{userDetails['Business
+                  Address 2']}} </li>
+                <li *ngIf="userDetails['Business City']  !== ''">Business City = {{userDetails['Business City']}} </li>
+                <li *ngIf="userDetails['Business Country']  !== ''">Business Country = {{userDetails['Business
+                  Country']}} </li>
+                <li *ngIf="userDetails['Business Fax']  !== ''">Business Fax = {{userDetails['Business Fax']}} </li>
+                <li *ngIf="userDetails['Business Phone']  !== ''">Business Phone = {{userDetails['Business Phone']}}</li>
+                <li *ngIf="userDetails['Business Postal Code']  !== ''">Business Postal Code = {{userDetails['Business
+                  Postal Code']}}</li>
+                <li *ngIf="userDetails['Business State']  !== ''">Business State = {{userDetails['Business State']}}</li>
+                <li *ngIf="userDetails['Categories'] !== ''">Categories = {{userDetails['Categories']}} </li>
+                <li *ngIf="userDetails['Country Code'] !== ''">Country Code = {{userDetails['Country Code']}}</li>
+                <li *ngIf="userDetails['Department'] !== ''">Department = {{userDetails['Department']}} </li>
+                <!-- <li *ngIf="userDetails['Display Name'] !== ''">Display Name = {{userDetails['Display Name']}}</li> -->
+                <li *ngIf="userDetails['E-mail 2 Address'] !== ''">E-mail 2 Address = {{userDetails['E-mail 2
+                  Address']}}</li>
+                <li *ngIf="userDetails['E-mail 3 Address'] !== ''">E-mail 3 Address = {{userDetails['E-mail 3
+                  Address']}}</li>
+                <li *ngIf="userDetails['E-mail Address'] !== ''">E-mail Address = {{userDetails['E-mail Address']}}</li>
+                <li *ngIf="userDetails['First Name'] !== ''">First Name = {{userDetails['First Name']}} </li>
+                <li *ngIf="userDetails['Gender'] !== ''">Gender = {{userDetails['Gender']}}</li>
+                <li *ngIf="userDetails['Home Address 2'] !== ''">Home Address 2 = {{userDetails['Home Address 2']}}</li>
+                <li *ngIf="userDetails['Home City'] !== ''">Home City = {{userDetails['Home City']}} </li>
+                <li *ngIf="userDetails['Home Country'] !== ''">Home Country = {{userDetails['Home Country']}}</li>
+                <li *ngIf="userDetails['Home Fax'] !== ''">Home Fax = {{userDetails['Home Fax']}} </li>
+                <li *ngIf="userDetails['Home Phone'] !== ''">Home Phone = {{userDetails['Home Phone']}}</li>
+                <li *ngIf="userDetails['Home Postal Code'] !== ''">Home Postal Code = {{userDetails['Home Postal
+                  Code']}} </li>
+                <li *ngIf="userDetails['Home State'] !== ''">Home State = {{userDetails['Home State']}}</li>
+                <li *ngIf="userDetails['Home Street'] !== ''">Home Street = {{userDetails['Home Street']}} </li>
+                <li *ngIf="userDetails['Job Title'] !== ''">Job Title = {{userDetails['Job Title']}} </li>
+                <li *ngIf="userDetails['Last Name'] !== ''">Last Name = {{userDetails['Last Name']}} </li>
+                <li *ngIf="userDetails['Mobile Phone'] !== ''">Mobile Phone = {{userDetails['Mobile Phone']}}</li>
+                <li *ngIf="userDetails['Nickname'] !== ''">Nickname = {{userDetails['Nickname']}} </li>
+                <li *ngIf="userDetails['Notes'] !== ''">Notes = {{userDetails['Notes']}}</li>
+                <li *ngIf="userDetails['Organization'] !== ''">Organization = {{userDetails['Organization']}} </li>
+                <li *ngIf="userDetails['Pager'] !== ''">Pager = {{userDetails['Pager']}} </li>
+                <li *ngIf="userDetails['Related name'] !== ''">Related name = {{userDetails['Related name']}}</li>
+                <li *ngIf="userDetails['Web Page'] !== ''">Web Page = {{userDetails['Web Page']}} </li>
+                <li *ngIf="userDetails['Web Page 2'] !== ''">Web Page 2 = {{userDetails['Web Page 2']}} </li>
+
+              </ul>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
