@@ -17,6 +17,7 @@ export class AppComponent implements OnInit, OnDestroy {
   subs: Subscription;
   dtOptions: DataTables.Settings = {};
   dtTrigger = new Subject();
+  p: any;
 
   //details
   userDetails = {
