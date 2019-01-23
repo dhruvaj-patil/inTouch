@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {  OnInit, OnDestroy } from '@angular/core';
 import { ContactListService } from './services/contact-list.service';
-import { Subscription, Subject } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
