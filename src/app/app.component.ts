@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-
-
-import {  OnInit, OnDestroy, ViewChild } from '@angular/core';
+import {  OnInit, OnDestroy } from '@angular/core';
 import { ContactListService } from './services/contact-list.service';
 import { Subscription, Subject } from 'rxjs';
 
@@ -15,8 +13,6 @@ export class AppComponent implements OnInit, OnDestroy {
   contacts: any;
   searchContacts: any;
   subs: Subscription;
-  dtOptions: DataTables.Settings = {};
-  dtTrigger = new Subject();
   p: any;
 
   //details
@@ -60,28 +56,20 @@ export class AppComponent implements OnInit, OnDestroy {
      "Web Page 2": ""
   }
 
-  @ViewChild('dataTable') table;
+  
 
   constructor(private cls:ContactListService) { 
     this.getContactList();
   }
 
   ngOnInit() {
-
-    this.dtOptions = {
-      pagingType: 'full_numbers',
-      pageLength: 5
-    };
-
   }
 
   getContactList() {
    this.subs =  this.cls.geList()
     .subscribe(res => {
       this.contacts = this.searchContacts = res;
-      // console.log(this.contacts);
       this.userDetails = this.contacts[0];
-      this.dtTrigger.next();
     });
   }
 
@@ -108,7 +96,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
      this.subs.unsubscribe();
-     this.dtTrigger.unsubscribe();
   }
   
 }
