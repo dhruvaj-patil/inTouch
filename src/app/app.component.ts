@@ -90,7 +90,6 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   getDetails(user) {
-    console.log(user);
     this.userDetails = user;
   }
 
